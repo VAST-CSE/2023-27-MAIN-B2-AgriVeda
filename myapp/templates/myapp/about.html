@@ -1,0 +1,151 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}About - AgriVeda{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 5rem 0;
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .about-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        position: relative;
+    }
+
+    .about-header h1 {
+        font-size: 4.5rem;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+        letter-spacing: -1.5px;
+        background: linear-gradient(135deg, var(--text-main), var(--primary-light));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+    }
+
+    .about-content {
+        background: var(--surface-color);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        padding: 4rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+        font-size: 1.15rem;
+        color: var(--text-main);
+        line-height: 1.8;
+        border: 1px solid var(--border-glass);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-content::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 60%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .about-content h2 {
+        color: var(--primary-light);
+        margin-top: 2.5rem;
+        margin-bottom: 1.2rem;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .about-content p {
+        margin-bottom: 1.8rem;
+        color: var(--text-muted);
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature-list {
+        list-style: none;
+        margin-top: 1.5rem;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-list li {
+        margin-bottom: 0;
+        position: relative;
+        padding: 1.5rem 1.5rem 1.5rem 4rem;
+        background: rgba(16, 185, 129, 0.05);
+        border-radius: 16px;
+        border: 1px solid var(--border-glass);
+        transition: var(--transition);
+        font-size: 1.05rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        color: var(--text-main);
+    }
+
+    .feature-list li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        border-color: var(--border-glass-hover);
+        background: rgba(16, 185, 129, 0.1);
+    }
+
+    .feature-list li::before {
+        content: '✨';
+        position: absolute;
+        left: 1.5rem;
+        font-size: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+    }
+
+    @media (max-width: 768px) {
+        .feature-list {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-header">
+        <h1>About AgriVeda</h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem;">Empowering Kerala's Farmers through Digital Access</p>
+    </div>
+
+    <div class="about-content">
+        <p>AgriVeda is a comprehensive platform designed to bridge the gap between farmers and the various agricultural schemes provided by the Krishi Bhavans across Kerala. Our mission is to ensure that every farmer has easy, transparent, and timely access to government support.</p>
+        
+        <h2>Our Vision</h2>
+        <p>To digitize and streamline the distribution of agricultural schemes, making it easier for farmers to discover, understand, and apply for financial and technical assistance.</p>
+        
+        <h2>Key Features</h2>
+        <ul class="feature-list">
+            <li>District-wise categorization of Krishi Bhavan schemes.</li>
+            <li>Secure user authentication and registration.</li>
+            <li>Seamless password recovery through trusted email integration.</li>
+            <li>Up-to-date information on subsidies, mechanization, and insurance.</li>
+        </ul>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{% url 'home' %}" class="btn btn-primary">Explore Schemes</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

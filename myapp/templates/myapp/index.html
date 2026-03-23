@@ -1,0 +1,129 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}AgriVeda - Districts{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero {
+        text-align: center;
+        padding: 4rem 0;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .hero h1 {
+        font-size: 4.5rem;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+        letter-spacing: -1.5px;
+        background: linear-gradient(135deg, var(--text-main), var(--primary-light));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+        line-height: 1.1;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        max-width: 650px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    .districts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2.5rem;
+        padding-bottom: 4rem;
+    }
+
+    .district-card {
+        background: var(--surface-color);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        padding: 3rem 1.5rem;
+        border-radius: 24px;
+        text-align: center;
+        text-decoration: none;
+        color: var(--text-main);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+        transition: var(--transition);
+        border: 1px solid var(--border-glass);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        z-index: 1;
+    }
+
+    .district-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle at center, rgba(16, 185, 129, 0.15), transparent 70%);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .district-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(16, 185, 129, 0.2);
+        border-color: var(--border-glass-hover);
+    }
+
+    .district-card:hover::before {
+        opacity: 1;
+    }
+
+    .district-icon {
+        font-size: 3.5rem;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+    }
+
+    .district-card:hover .district-icon {
+        transform: scale(1.15) rotate(5deg) translateY(-5px);
+        filter: drop-shadow(0 0 20px rgba(163, 230, 53, 0.6));
+    }
+
+    .district-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+        color: var(--text-main);
+        transition: color 0.3s ease;
+        letter-spacing: -0.5px;
+    }
+    
+    .district-card:hover .district-name {
+        color: var(--accent-color);
+        text-shadow: 0 0 15px rgba(163, 230, 53, 0.4);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Kerala Districts</h1>
+    <p>Select your district to explore the latest schemes available at your local Krishi Bhavan.</p>
+</div>
+
+<div class="districts-grid">
+    {% for district in districts %}
+    <a href="{% url 'district_schemes' district %}" class="district-card">
+        <span class="district-icon">🏛️</span>
+        <span class="district-name">{{ district }}</span>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
