@@ -26,7 +26,7 @@ except ImportError:
 # Initialize AI Client
 try:
     from google import genai
-    _API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyB-Y1bb5EvPBSElsmrGmymYQXYS59J4YVU")
+    _API_KEY = os.environ.get("GEMINI_API_KEY")
     gemini_client = genai.Client(api_key=_API_KEY) if _API_KEY else None
 except ImportError:
     logger.info("google-genai not installed. Chatbot will use local fallback logic.")

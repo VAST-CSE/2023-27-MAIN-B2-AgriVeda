@@ -1,7 +1,7 @@
 from google import genai
-
+import os
 # The client gets the API key from the environment variable `GEMINI_API_KEY`.
-client = genai.Client(api_key="AIzaSyB-Y1bb5EvPBSElsmrGmymYQXYS59J4YVU")
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 response = client.models.generate_content(
     model="gemini-3-flash-preview",
